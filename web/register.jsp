@@ -28,7 +28,7 @@
             color: #333;
         }
         .form-container label {
-            display: inline;
+            display: block;
             margin-bottom: 5px;
             color: #555;
         }
@@ -62,12 +62,15 @@
         .form-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .message{
+            padding-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Crear Usuario</h2>
-        <form action="guardarUsuario" method="post">
+        <form action="UsuarioController" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required><br>
 
@@ -88,6 +91,15 @@
 
             <input type="submit" value="Guardar">
         </form>
+
+        <%
+            String mensaje = (String) request.getAttribute("mensaje");
+            if (mensaje != null) {
+        %>
+            <div class="message"><%= mensaje %></div>
+        <%
+            }
+        %>
     </div>
 </body>
 </html>
