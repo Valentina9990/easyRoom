@@ -44,6 +44,13 @@ public class UsuarioRepository {
                 }
                 LOGGER.info("Usuario guardado exitosamente con ID: " + generatedId);
             }
+            if ("Propietario".equals(usuario.getRol())) {
+                String sqlPropietario = "INSERT INTO propietario (usuario_id) VALUES (?)";
+                try (PreparedStatement stmtProp = conn.prepareStatement(sqlPropietario)) {
+                    stmtProp.setInt(1, generatedId);
+                    stmtProp.executeUpdate();
+                }
+            }
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error al guardar el usuario: " + e.getMessage(), e);
