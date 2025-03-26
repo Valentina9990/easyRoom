@@ -35,11 +35,11 @@ public class UsuarioController extends HttpServlet {
         try {
             usuarioService.saveUsuario(usuario);
             request.setAttribute("mensaje", "Usuario creado exitosamente.");
-            request.getRequestDispatcher("/successMessage.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("mensaje", "Error al crear el usuario: " + e.getMessage());
-            request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
+
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     @Override

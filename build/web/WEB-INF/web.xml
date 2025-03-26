@@ -8,6 +8,10 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>com.easyRoom.presentation.UsuarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HabitacionController</servlet-name>
+        <servlet-class>com.easyRoom.presentation.HabitacionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GuardarUsuarioServlet</servlet-name>
         <url-pattern>/GuardarUsuarioServlet</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HabitacionController</servlet-name>
+        <url-pattern>/HabitacionController</url-pattern>
     </servlet-mapping>
 </web-app>

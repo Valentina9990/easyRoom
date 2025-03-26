@@ -64,6 +64,7 @@
         }
         .message{
             padding-top: 10px;
+            color: green;
         }
     </style>
 </head>
@@ -100,6 +101,7 @@
         <%
             }
         %>
+        <a href="index.html">Volver al inicio</a>
     </div>
 </body>
 </html>
