@@ -75,4 +75,30 @@ public class HabitacionRepository {
         }
         return habitaciones;
     }
+    
+    public List<Habitacion> findHabitacionesNoVerificadas() {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        String sql = "SELECT * FROM Habitacion WHERE verificada = false"; 
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion(
+                        rs.getInt("id"),
+                        rs.getString("ciudad"),
+                        rs.getString("direccion"),
+                        rs.getInt("capacidad"),
+                        rs.getInt("propietario_id")
+                );
+                habitacion.setVerificada(rs.getBoolean("verificada"));
+                habitaciones.add(habitacion);
+            }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error al obtener habitaciones no verificadas: " + e.getMessage(), e);
+        }
+        return habitaciones;
+    }
 }

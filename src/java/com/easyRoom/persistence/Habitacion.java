@@ -10,6 +10,7 @@ public class Habitacion {
     private String direccion;
     private int capacidad;
     private int propietarioId;
+    private boolean verificada;
 
     public Habitacion(int id, String ciudad, String direccion, int capacidad, int propietarioId) {
         this.id = id;
@@ -24,6 +25,14 @@ public class Habitacion {
         this.direccion = direccion;
         this.capacidad = capacidad;
         this.propietarioId = propietarioId;
+    }
+
+    public boolean isVerificada() {
+        return verificada;
+    }
+
+    public void setVerificada(boolean verificada) {
+        this.verificada = verificada;
     }
 
 

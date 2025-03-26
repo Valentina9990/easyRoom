@@ -18,4 +18,8 @@ public class HabitacionService {
     public List<Habitacion> getHabitacionesByPropietario(int propietarioId) {
         return habitacionRepository.findHabitacionesByPropietario(propietarioId);
     }
-}
+    
+    public List<Habitacion> getHabitacionesNoVerificadas() {
+        return habitacionRepository.findHabitacionesNoVerificadas();
+    }
+} 
