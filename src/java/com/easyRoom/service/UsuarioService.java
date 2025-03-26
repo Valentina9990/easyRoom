@@ -27,4 +27,18 @@ public class UsuarioService {
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAllUsuarios();
     }
+    
+    public Usuario authenticate(String correo, String contrasena) {
+        if (usuarioRepository.verifyPassword(correo, contrasena)) {
+            return usuarioRepository.findByEmail(correo);
+        }
+        return null;
+    }
+
+    public boolean registerUser(Usuario usuario) {
+        if (usuarioRepository.findByEmail(usuario.getCorreo()) != null) {
+            return false;
+        }
+        return usuarioRepository.saveUsuario(usuario) > 0;
+    }
 }

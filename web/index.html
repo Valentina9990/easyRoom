@@ -1,41 +1,108 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Página de Inicio</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
+<html lang="es">
+<head>
+    <title>EasyRoom - Inicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --input-border-color: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--background-color) 0%, #e9f0f2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .title {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
             }
-            h1 {
-                color: #333;
-                text-align: center;
-                margin-top: 50px;
+            .title {
+                font-size: 2rem;
             }
-            p {
-                text-align: center;
-                color: #666;
-            }
-            a {
-                display: block;
-                text-align: center;
-                margin-top: 20px;
-                color: #007bff;
-                text-decoration: none;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Bienvenido a EasyRoom</h1>
-        <a href="register.jsp">Registrarse</a>
-        <a href="createRoom.jsp">Crear habitación</a>
-        <a href="verifyRoom.jsp">Verificar habitación</a>
-    </body>
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">EasyRoom</h1>
+        <div class="nav-links">
+            <a href="login.jsp" class="nav-link">Iniciar Sesión</a>
+            <a href="register.jsp" class="nav-link">Registrarse</a>
+        </div>
+    </div>
+</body>
 </html>

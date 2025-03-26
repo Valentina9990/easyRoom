@@ -22,4 +22,8 @@ public class HabitacionService {
     public List<Habitacion> getHabitacionesNoVerificadas() {
         return habitacionRepository.findHabitacionesNoVerificadas();
     }
+    
+    public boolean markAsVerified(int habitacionId) {
+        return habitacionRepository.updateVerificada(habitacionId, true);
+    }
 } 

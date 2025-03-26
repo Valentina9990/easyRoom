@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Usuario</title>
+    <title>EasyRoom - Iniciar Sesión</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -64,9 +64,8 @@
             color: var(--text-color);
         }
 
-        .form-container input[type="text"],
-        .form-container input[type="password"],
-        .form-container select {
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
             width: 100%;
             padding: 12px;
             border: 1px solid var(--input-border-color);
@@ -75,15 +74,14 @@
             transition: border-color 0.3s ease;
         }
 
-        .form-container input[type="text"]:focus,
-        .form-container input[type="password"]:focus,
-        .form-container select:focus {
+        .form-container input[type="email"]:focus,
+        .form-container input[type="password"]:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
 
-        .form-container input[type="submit"] {
+        .form-container button {
             width: 100%;
             padding: 12px;
             background-color: var(--primary-color);
@@ -96,19 +94,37 @@
             font-weight: 600;
         }
 
-        .form-container input[type="submit"]:hover {
+        .form-container button:hover {
             background-color: var(--secondary-color);
         }
 
-        .form-container input[type="submit"]:active {
+        .form-container button:active {
             transform: scale(0.98);
         }
 
-        .message {
+        .error {
+            background-color: #ffdddd;
+            color: #ff0000;
+            padding: 10px;
+            border-radius: 6px;
             text-align: center;
-            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .register-link {
+            text-align: center;
             margin-top: 15px;
-            font-weight: 500;
+        }
+
+        .register-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .register-link a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
         }
 
         .back-link {
@@ -135,42 +151,29 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Crear Usuario</h2>
-        <form action="UsuarioController" method="post">
+        <h2>Iniciar Sesión</h2>
+        
+        <% if (request.getAttribute("error") != null) { %>
+            <div class="error"><%= request.getAttribute("error") %></div>
+        <% } %>
+        
+        <form action="login" method="POST">
             <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
             </div>
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="text" id="correo" name="correo" required>
-            </div>
+            
             <div class="form-group">
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
-            <div class="form-group">
-                <label for="rol">Rol:</label>
-                <select id="rol" name="rol" required>
-                    <option value="Propietario">Propietario</option>
-                    <option value="Cliente">Cliente</option>
-                    <option value="Verificador">Verificador</option>
-                </select>
-            </div>
-            <input type="submit" value="Guardar">
+            
+            <button type="submit">Ingresar</button>
         </form>
-        <%
-            String mensaje = (String) request.getAttribute("mensaje");
-            if (mensaje != null) {
-        %>
-            <div class="message"><%= mensaje %></div>
-        <%
-            }
-        %>
+        
+        <div class="register-link">
+            <p>¿No tienes cuenta? <a href="register.jsp">Regístrate aquí</a></p>
+        </div>
         <a href="index.html" class="back-link">Volver al inicio</a>
     </div>
 </body>

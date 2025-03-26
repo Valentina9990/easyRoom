@@ -7,7 +7,6 @@ package com.easyRoom.presentation;
 import com.easyRoom.persistence.Habitacion;
 import com.easyRoom.service.HabitacionService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,6 +45,7 @@ public class HabitacionController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/createRoom.jsp").forward(request, response);
+        
     }
 
 }

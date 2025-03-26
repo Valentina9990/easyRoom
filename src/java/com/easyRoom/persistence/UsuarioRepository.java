@@ -82,4 +82,37 @@ public class UsuarioRepository {
 
         return usuarios;
     }
+    
+    public Usuario findByEmail(String correo) {
+        String sql = "SELECT * FROM Usuario WHERE correo = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, correo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Usuario usuario = new Usuario(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("correo"),
+                        rs.getString("contrasena"),
+                        rs.getString("rol")
+                    );
+                    return usuario;
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error al buscar usuario por correo: " + e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public boolean verifyPassword(String correo, String contrasena) {
+        Usuario usuario = findByEmail(correo);
+        if (usuario != null) {
+            return usuario.getContrasena().equals(contrasena);
+        }
+        return false;
+    }
 }

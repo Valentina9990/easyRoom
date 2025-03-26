@@ -76,6 +76,24 @@ public class HabitacionRepository {
         return habitaciones;
     }
     
+    public boolean updateVerificada(int habitacionId, boolean verificada) {
+        String sql = "UPDATE Habitacion SET verificada = ? WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setBoolean(1, verificada);
+            stmt.setInt(2, habitacionId);
+
+            int filasActualizadas = stmt.executeUpdate();
+            return filasActualizadas > 0;
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error al actualizar estado de verificación: " + e.getMessage(), e);
+            return false;
+        }
+    }
+    
     public List<Habitacion> findHabitacionesNoVerificadas() {
         List<Habitacion> habitaciones = new ArrayList<>();
         String sql = "SELECT * FROM Habitacion WHERE verificada = false"; 

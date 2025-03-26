@@ -24,22 +24,21 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String correo = request.getParameter("correo");
-        String contrasena = request.getParameter("contraseña");
-        String rol = request.getParameter("rol");
+        Usuario usuario = new Usuario(
+            request.getParameter("nombre"),
+            request.getParameter("apellido"),
+            request.getParameter("correo"),
+            request.getParameter("contrasena"),
+            request.getParameter("rol")
+        );
 
-        Usuario usuario = new Usuario(nombre, apellido, correo, contrasena, rol);
-
-        try {
-            usuarioService.saveUsuario(usuario);
-            request.setAttribute("mensaje", "Usuario creado exitosamente.");
-        } catch (Exception e) {
-            request.setAttribute("mensaje", "Error al crear el usuario: " + e.getMessage());
+        if (usuarioService.registerUser(usuario)) {
+            request.setAttribute("success", "Registro exitoso. Por favor inicie sesión.");
+            response.sendRedirect("login.jsp");
+        } else {
+            request.setAttribute("error", "El correo ya está registrado");
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
-
-        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     @Override
